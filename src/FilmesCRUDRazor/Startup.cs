@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+//importar:
+using Microsoft.EntityFrameworkCore;
+using FilmesCRUDRazor.Models;
 namespace FilmesCRUDRazor
 {
     public class Startup
@@ -23,6 +26,7 @@ namespace FilmesCRUDRazor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<FilmeContext>(options => options.UseSqlite(Configuration.GetConnectionString("FilmeContext")));
             services.AddRazorPages();
         }
 
